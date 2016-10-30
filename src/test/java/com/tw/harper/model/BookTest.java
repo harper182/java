@@ -107,6 +107,8 @@ public class BookTest {
     public void testSpy(){
         List list = new LinkedList<>();
         List spy = spy(list);
+        System.out.println(list.hashCode());
+        System.out.println(spy.hashCode());
         when(spy.size()).thenReturn(100);
         spy.add("one");
         spy.add("two");
@@ -116,6 +118,11 @@ public class BookTest {
         verify(spy).add("one");
         verify(spy).add("two");
         doReturn("foo").when(spy).get(2);
+
+        System.out.println(spy.size());
+        System.out.println(list.size());
+
+
     }
 
     @Test
