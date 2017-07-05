@@ -10,21 +10,23 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ReentranLockDemo {
     public static void main(String[] args) throws InterruptedException {
         //IntLock test
-//        IntLock r1 = new IntLock(1);
-//        IntLock r2 = new IntLock(2);
-//        Thread t1 = new Thread(r1);
-//        Thread t2 = new Thread(r2);
-//        t1.start();
-//        t2.start();
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        t2.interrupt();
-        ReentrantLockCondition lock = new ReentrantLockCondition();
-        Thread t1 = new Thread(lock);
+        IntLock r1 = new IntLock(1);
+        IntLock r2 = new IntLock(2);
+        Thread t1 = new Thread(r1);
+        Thread t2 = new Thread(r2);
         t1.start();
+        t2.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t2.interrupt();
+
+
+        ReentrantLockCondition lock = new ReentrantLockCondition();
+        Thread t11 = new Thread(lock);
+        t11.start();
         Thread.sleep(2000);
         lock.lock.lock();
         lock.condition.signal();
